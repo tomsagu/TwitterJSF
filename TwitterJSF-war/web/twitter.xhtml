@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Twitter</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2" border="3">
+                <h:column>               
+                    <h1> Hola #{usuariosBean.usuarioSeleccionado.nombre}</h1>
+                </h:column>
+                <h:column>
+                    <h1><h:commandButton value="Salir" action="#{usuariosBean.doSalir()}"/></h1>
+                </h:column>
+            </h:panelGrid>
+        </h:form>
+        <h:panelGrid columns="2" border="1">
+            <h:column>               
+                Nombre
+            </h:column>
+            <h:column>
+                #{usuariosBean.usuarioSeleccionado.nombre}
+            </h:column>
+            <h:column>
+
+                Descripción
+            </h:column>  
+            <h:column>
+                #{usuariosBean.usuarioSeleccionado.descripcion}
+            </h:column>
+            <h:column>
+
+                Pais
+            </h:column>   
+            <h:column>
+                #{usuariosBean.usuarioSeleccionado.pais.paisIsoCode}
+            </h:column>
+            <h:column>
+
+                URL
+            </h:column>   
+            <h:column>
+                #{usuariosBean.usuarioSeleccionado.url}
+            </h:column>
+            <h:column>
+
+                Fecha 
+            </h:column>   
+            <h:column>
+                #{usuariosBean.usuarioSeleccionado.fecha}
+            </h:column>
+            <h:column>
+
+                Número de seguidores
+            </h:column> 
+            <h:column>
+                #{usuariosBean.usuarioSeleccionado.usuarioList1.size()}
+            </h:column>
+            <h:column>
+
+                Número de Seguidores
+            </h:column>  
+            <h:column>
+                #{usuariosBean.usuarioSeleccionado.usuarioList.size()}
+            </h:column>
+            <h:column>
+                Número de MeGustas
+            </h:column>
+            <h:column>
+                #{usuariosBean.usuarioSeleccionado.tuitList.size()}
+            </h:column>
+        </h:panelGrid>
+
+        <br></br><h2>Twits del usuario:</h2>
+        <h:form>
+            <h:dataTable border="1" value="#{twitterBean.listaTuitsUsuario}" var="tuit">
+                <h:column>
+                    <f:facet name="header">
+                        Fecha
+                    </f:facet>
+                    #{tuit.fecha}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Texto
+                    </f:facet>
+                    #{tuit.texto}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Autor
+                    </f:facet>
+                    #{tuit.usuario.nombre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        MeGustas
+                    </f:facet>
+                    #{tuit.usuarioList.size()}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Retuits
+                    </f:facet>
+                    #{tuit.usuarioList1.size()}
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Retuitear" action="#{twitterBean.doRetuit()}"/>            
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Me Gusta" action="#{twitterBean.doMeGusta()}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        
+        <br></br><h2>Twits Seguidores:</h2>
+        <h:form>
+            <h:dataTable border="1" value="#{twitterBean.listaTuitsSeguidos}" var="tuit">
+                <h:column>
+                    <f:facet name="header">
+                        Fecha
+                    </f:facet>
+                    #{tuit.fecha}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Texto
+                    </f:facet>
+                    #{tuit.texto}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Autor
+                    </f:facet>
+                    #{tuit.usuario.nombre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        MeGustas
+                    </f:facet>
+                    #{tuit.usuarioList.size()}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Retuits
+                    </f:facet>
+                    #{tuit.usuarioList1.size()}
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Retuitear" action="#{twitterBean.doRetuit(tuit)}"/>            
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Me Gusta" action="#{twitterBean.doMeGusta(tuit)}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+
